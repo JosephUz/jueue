@@ -1,0 +1,29 @@
+{
+  "name": "jueue",
+  "version": "1.0.0",
+  "description": "For proper coding and to run sequential asynchronous function.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --exit",
+    "basic": "node examples/basic/app.js"
+  },
+  "author": "josephuz",
+  "license": "MIT",
+  "files": [
+    "package.json",
+    "index.js",
+    "libs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JosephUz/jueue.git"
+  },
+  "keywords": [
+    "synchronous",
+    "asynchronous",
+    "sequential function"
+  ],
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}

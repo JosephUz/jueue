@@ -104,6 +104,18 @@ jueue.get(
 * `[arguments]`: list may write like arguments.
 
 
+#### `jueue.promise(list)` or `jueue.promise()`
+`Used to get instance of promise for jueue.`
+
+**Parameters:**
+
+* `[list]`:  Required array of functions. For queue. 
+
+***Or***
+
+* `[arguments]`: list may write like arguments.
+
+
 #### `jueue.catch(ecb)`
 
 **Parameters:**

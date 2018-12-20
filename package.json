@@ -1,6 +1,6 @@
 {
   "name": "jueue",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "For proper coding and to run sequential asynchronous function.",
   "main": "index.js",
   "scripts": {

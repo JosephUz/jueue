@@ -338,4 +338,40 @@ describe("index.js test", function () {
             done(err);
         });
     });
+
+    it("use promise", function (done) {
+        jueue.promise(
+            function (e) {
+                e.next();
+            },
+            function (e) {
+                e.done("done");
+            }
+        ).then(function (value) {
+            if (value == "done")
+                done();
+            else
+                done(new Error("use promise is not working."));
+        }).catch(function (err) {
+            done(err);
+        });
+    });
+
+    it("catch error by using promise", function (done) {
+        jueue.promise(
+            function (e) {
+                e.next();
+            },
+            function (e) {
+                e.throw(new Error("some"));
+            }
+        ).then(function (value) {
+            done(new Error("catch error by using promise is not working."));
+        }).catch(function (err) {
+            if (err.message == "some")
+                done()
+            else
+                done(err);
+        });
+    });
 });

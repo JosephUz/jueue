@@ -16,4 +16,11 @@ exports.get = function (list) {
     return new Jueue(list instanceof Array ? list : Array.prototype.map.call(arguments, function (item) { return item; }));
 }
 
+exports.promise = function () {
+    var args = arguments;
+    return new Promise(function (res, rej) {
+        exports.get.apply({}, args).then(res).catch(rej);
+    });
+}
+
 module.exports = exports;

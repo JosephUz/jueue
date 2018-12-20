@@ -39,8 +39,14 @@ jueue.get(
   },
   function (e) {
     //...
+    // If there is an error
+    e.throw(error);
+    // or complete jueue.
+    e.done(); // this calls then function callback
   }
-).catch(function(err){
+).then(function (result) {
+  // Write function to manage done.
+}).catch(function(err) {
   // Write function to catch error.
 });
 
@@ -76,9 +82,9 @@ jueue.get(
 
 * `[options]`: Optional object containing any of the following properties:
   
-  * `[running]`: Indicates the working status of all queues. Default value: true
+  * `running`: Indicates the working status of all queues. Default value: true
   
-  * `[pauseTime]`: Indicates the duration of next pause control. Default value: 1000
+  * `pauseTime`: Indicates the duration of next pause control. Default value: 1000
 
 ***Or***
 
@@ -97,35 +103,56 @@ jueue.get(
 
 * `[arguments]`: list may write like arguments.
 
-#### `jueue.get(list).catch(ecb)`
+
+#### `jueue.catch(ecb)`
 
 **Parameters:**
 
-* `[ecb]`:  Optional error function. Used to catch errors.
+* `ecb`:  Optional error function. Used to catch errors.
+
+
+#### `jueue.then(cb)`
+
+**Parameters:**
+
+* `cb`:  Optional done function. Used to catch done.
   
 
-#### `e.next([options])` or `e.next([step])` or `e.next([name])`
+#### `e.next([options])` or `e.next(step)` or `e.next(name)`
 
 **Parameters:**
 
 * `[options]`: Optional object containing any of the following properties:
   
-  * `[step]`: The index of the function you want to go directly.
+  * `step`: The index of the function you want to go directly.
 
-  * `[name]`: The name of the function you want to go directly.
+  * `name`: The name of the function you want to go directly.
   
-  * `[model]`: The object model you want to send to the next function.
+  * `model`: The object model you want to send to the next function.
   
-  * `[args]`: The arguments you want to send to the next function.
+  * `args`: The arguments you want to send to the next function.
 
 ***Or***
 
-* `[step]`: The index of the function you want to go directly. options may write like step.
+* `step`: The index of the function you want to go directly. options may write like step.
 
 ***Or***
 
-* `[name]`: The name of the function you want to go directly. options may write like name.
+* `name`: The name of the function you want to go directly. options may write like name.
 
+
+#### `e.throw(err)`
+
+**Parameters:**
+
+* `err`: It must be instance of Error.
+
+
+#### `e.done(result)`
+
+**Parameters:**
+
+* `result`: Object that you want to send.
 
 
 ## Examples

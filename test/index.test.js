@@ -305,17 +305,36 @@ describe("index.js test", function () {
             function recursive(e) {
                 if (tempTickFirst == 1 && tickFirst == 0)
                     done();
+                else {
+                    if (tempTickFirst == 2)
+                        done(new Error("pause/resume queue process is not working."));
 
-                if (tempTickFirst == 2)
-                    done(new Error("pause/resume queue process is not working."));
-
-                tickFirst++;
-                tempTickFirst++;
-                setTimeout(function () {
-                    e.next({ name: "recursive" });
-                }, 10);
+                    tickFirst++;
+                    tempTickFirst++;
+                    setTimeout(function () {
+                        e.next({ name: "recursive" });
+                    }, 10);
+                }
             },
         ).catch(function (err) {
+            done(err);
+        });
+    });
+
+    it("set done function", function (done) {
+        jueue.get(
+            function (e) {
+                e.next();
+            },
+            function (e) {
+                e.done("done");
+            }
+        ).then(function (value) {
+            if (value == "done")
+                done();
+            else
+                done(new Error("set done function is not working."));
+        }).catch(function (err) {
             done(err);
         });
     });

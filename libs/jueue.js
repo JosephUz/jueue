@@ -2,6 +2,7 @@ const options = require('./options');
 
 function Jueue(list) {
     var ecb = null;
+    var cb = null;
     var e = {};
     var index = 0;
 
@@ -20,6 +21,15 @@ function Jueue(list) {
             set: function (value) {
                 if (typeof (value) == "function")
                     ecb = value;
+            }
+        },
+        done: {
+            get: function () {
+                return cb;
+            },
+            set: function (value) {
+                if (typeof (value) == "function")
+                    cb = value;
             }
         }
     });
@@ -79,12 +89,22 @@ function Jueue(list) {
             get: function () {
                 return ecb || function () { };
             }
+        },
+        done: {
+            get: function () {
+                return cb || function () { };
+            }
         }
     });
 
     setTimeout(function () {
         e.next({ step: 0 });
     }, 0);
+}
+
+Jueue.prototype.then = function (cb) {
+    this.done = cb;
+    return this;
 }
 
 Jueue.prototype.catch = function (ecb) {

@@ -1,4 +1,5 @@
 module.exports = {
     running: true,
-    pauseTime: 1000
+    pauseTime: 1000,
+    processTimeout: 0
 };

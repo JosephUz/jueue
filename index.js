@@ -7,6 +7,7 @@ exports.set = function (key, value) {
     if (typeof (key) == "object") {
         options.running = key.running || options.running;
         options.pauseTime = key.pauseTime || options.pauseTime;
+        options.processTimeout = key.processTimeout || options.processTimeout;
     } else if (typeof (key) == "string") {
         options[key] = value;
     }

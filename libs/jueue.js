@@ -81,7 +81,7 @@ function Jueue(list) {
                             setTimeout(next, options.pauseTime);
                         }
                     }
-                    setTimeout(next, 0);
+                    setTimeout(next, options.processTimeout);
                 }
             }
         },
@@ -99,7 +99,7 @@ function Jueue(list) {
 
     setTimeout(function () {
         e.next({ step: 0 });
-    }, 0);
+    }, options.processTimeout);
 }
 
 Jueue.prototype.then = function (cb) {
